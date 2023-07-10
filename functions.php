@@ -1,15 +1,19 @@
 <?php
 
-function addNote($conn, $note) {
-  mysqli_query($conn, "INSERT INTO notes (note, created_at) VALUES ('$note', CURDATE());");
+require("dbConnection.php");
+
+$dbConn = $mysqlClient;
+
+function addNote($note) {
+  mysqli_query($GLOBALS["dbConn"], "INSERT INTO notes (note, created_at) VALUES ('$note', CURDATE());");
 }
 
-function deleteNote($conn, $id) {
-  mysqli_query($conn, "DELETE FROM notes WHERE id = $id;");
+function deleteNote($id) {
+  mysqli_query($GLOBALS["dbConn"], "DELETE FROM notes WHERE id = $id;");
 }
 
-function editNote($conn, $id, $note) {
-  mysqli_query($conn, "UPDATE notes SET note='$note' WHERE id= $id;");
+function editNote($id, $note) {
+  mysqli_query($GLOBALS["dbConn"], "UPDATE notes SET note='$note' WHERE id= $id;");
 }
 
 ?>
